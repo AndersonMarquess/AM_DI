@@ -44,7 +44,7 @@ namespace AM_DI.Scripts
 
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Dependency Finder");
+            EditorGUILayout.LabelField("Dependency Initializer");
 
             if (GUILayout.Button("Find"))
             {
