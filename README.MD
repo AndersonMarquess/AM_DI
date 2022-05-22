@@ -1,17 +1,19 @@
 <h2>How to install?</h2>
 
-```json
-Add as custom git package with package manager
+Add as custom git package with package manager:
 
 1. Open package manager
 2. Click on the plus (➕) button
 3. Choose "Add package from git URL"
-4. Past the url: "https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
-```
-or
+4. Past the url: 
 ```json
-Set direct reference in manifest.json
+"https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
+```
 
+or
+
+Set direct reference in manifest.json:
+```json
 "com.andersonmarques.dependencyinitializer": "https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
 ```
 
