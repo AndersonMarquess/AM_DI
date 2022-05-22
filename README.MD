@@ -1,9 +1,25 @@
+<h2>How to install?</h2>
+
+```json
+Add as custom git package with package manager
+
+1. Open package manager
+2. Click on the plus (➕) button
+3. Choose "Add package from git URL"
+4. Past the url: "https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
+```
+or
+```json
+Set direct reference in manifest.json
+
+"com.andersonmarques.dependencyinitializer": "https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
+```
 
 <h2>How to use?</h2>
 <p>1 - Just add the desired attribute on the field that will be filled.</p>
 <p>2 - In the transform of the gameobject, just click on "Find"</p>
 
-![Transform component image with custom editor showing the Find button](/AM_DI.jpg)
+![Transform component image with custom editor showing the Find button](https://raw.githubusercontent.com/AndersonMarquess/AM_DI/main/AM_DI.jpg)
 
 <p>3 - Done!</p>
 

@@ -16,5 +16,6 @@
     "name": "Anderson Marques",
     "url": "https://github.com/AndersonMarquess"
   },
-  "type": "tool"
+  "type": "tool",
+  "category": "editor extensions"
 }
