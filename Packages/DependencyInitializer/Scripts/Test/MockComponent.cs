@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using UnityEngine.Assertions;
 using AM_DI.Scripts.Attributes;
 
-namespace AM_DI.Scripts
+namespace AM_DI.Scripts.Test
 {
     public class MockComponent : MonoBehaviour
     {
@@ -47,8 +47,9 @@ namespace AM_DI.Scripts
             Assert.IsNotNull(_findInComponent, "Find in component not working");
             Assert.IsNotNull(_findInChildPath, "Valid path not working");
             Assert.IsNull(_findInChildInvalidPath, "Invalid path not working");
+            Assert.IsNotNull(_canvas, "Find in child not working");
             Assert.IsNotNull(_findInScene, "Find in scene not working");
-            Assert.IsNull(_findInSceneActive, "Find in scene active not working");
+            Assert.IsNotNull(_findInSceneActive, "Find in scene active not working");
 #endif
         }
     }

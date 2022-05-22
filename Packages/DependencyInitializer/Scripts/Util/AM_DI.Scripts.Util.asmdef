@@ -1,0 +1,16 @@
+{
+    "name": "AM_DI.Scripts.Util",
+    "rootNamespace": "",
+    "references": [
+        "GUID:512cadd9b4fcaeb48b40268684bb6cab"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

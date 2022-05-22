@@ -1,0 +1,20 @@
+{
+  "name": "com.andersonmarques.dependencyinitializer",
+  "version": "1.0.0",
+  "displayName": "Dependency Initializer",
+  "description": "An alternative to drag and drop for serialized fields in unity",
+  "unity": "2020.3",
+  "documentationUrl": "https://github.com/AndersonMarquess/AM_DI",
+  "licensesUrl": "https://github.com/AndersonMarquess/AM_DI/blob/main/LICENSE",
+  "keywords": [
+    "plugin",
+    "unity-editor",
+    "serialized-field",
+    "drag and drop"
+  ],
+  "author": {
+    "name": "Anderson Marques",
+    "url": "https://github.com/AndersonMarquess"
+  },
+  "type": "tool"
+}

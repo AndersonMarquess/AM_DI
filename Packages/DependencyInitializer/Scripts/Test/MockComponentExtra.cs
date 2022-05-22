@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 using AM_DI.Scripts.Attributes;
 
-namespace AM_DI.Scripts
+namespace AM_DI.Scripts.Test
 {
     public class MockComponentExtra : MonoBehaviour
     {

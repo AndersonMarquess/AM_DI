@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using AM_DI.Scripts.Attributes;
 
-namespace AM_DI.Scripts
+namespace AM_DI.Scripts.Test
 {
     public class InheritedMockComponent : MockComponent
     {
