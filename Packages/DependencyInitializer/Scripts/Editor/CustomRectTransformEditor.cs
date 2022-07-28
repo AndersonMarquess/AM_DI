@@ -7,7 +7,7 @@ using AM_DI.Scripts.Util;
 namespace AM_DI.Scripts
 {
     /// <summary>
-    /// Transform modify font: https://forum.unity.com/threads/extending-instead-of-replacing-built-in-inspectors.407612/
+    /// Transform modify source: https://forum.unity.com/threads/extending-instead-of-replacing-built-in-inspectors.407612/
     /// </summary>
     [CustomEditor(typeof(RectTransform), true)]
     public class CustomRectTransformEditor : Editor
@@ -38,6 +38,12 @@ namespace AM_DI.Scripts
 
         public override void OnInspectorGUI()
         {
+            if (EditorUtility.IsPersistent(_targetClass.gameObject))
+            {
+                _defaultEditor.OnInspectorGUI();
+                return;
+            }
+
             _defaultEditor.OnInspectorGUI();
 
             EditorGUILayout.Space(5f);

@@ -139,11 +139,10 @@ namespace AM_DI.Scripts.Util
         /// </summary>
         private static void SetComponentDirty(Component owner)
         {
-            //Only set dirty don't support Ctrl+z
-            //UnityEditor.EditorUtility.SetDirty(owner);
 #if UNITY_EDITOR
             UnityEditor.Undo.RecordObject(owner, "Dependency Initializer");
             UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(owner);
+            UnityEditor.EditorUtility.SetDirty(owner);
 #endif
         }
     }
