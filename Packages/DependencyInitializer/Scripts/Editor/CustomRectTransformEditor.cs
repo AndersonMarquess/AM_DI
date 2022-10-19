@@ -45,32 +45,7 @@ namespace AM_DI.Scripts
             }
 
             _defaultEditor.OnInspectorGUI();
-
-            EditorGUILayout.Space(5f);
-
-            EditorGUILayout.BeginHorizontal();
-
-            EditorGUILayout.LabelField("Dependency Initializer");
-
-            if (GUILayout.Button("Find"))
-            {
-                Component[] transformComponents = _targetClass.GetComponents(typeof(Component));
-                for (int i = 0; i < transformComponents.Length; i++)
-                {
-                    DependencyInitializer.InitializeComponents(transformComponents[i]);
-                }
-            }
-
-            if (GUILayout.Button("Clear"))
-            {
-                Component[] transformComponents = _targetClass.GetComponents(typeof(Component));
-                for (int i = 0; i < transformComponents.Length; i++)
-                {
-                    DependencyInitializer.ClearComponents(transformComponents[i]);
-                }
-            }
-
-            EditorGUILayout.EndHorizontal();
+            BaseTransformDataEditor.DrawSharedTransformEditor(serializedObject, _targetClass);
         }
     }
 }

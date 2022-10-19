@@ -1,27 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3187263201104513172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555505956955629104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558bcaed3f637cb499b064f28c4af310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _normalField: 42
-  _findInComponent: {fileID: 555505956955629111}
-  _findInChild: {fileID: 555505957528642376}
-  _findInActiveChild: {fileID: 555505957788026057}
-  _findInChildPath: {fileID: 555505958947019870}
-  _findInChildInvalidPath: {fileID: 0}
-  _canvas: {fileID: 2676421800986887240}
-  _findInScene: {fileID: 0}
-  _findInSceneActive: {fileID: 0}
-  _childGraphics: {fileID: 8532941692172686583}
 --- !u!1 &2014841021821643857
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +108,11 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6484504978931333593, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
   m_PrefabInstance: {fileID: 6793710092466231953}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &555505958947019867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6484504980346226378, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+  m_PrefabInstance: {fileID: 6793710092466231953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &555505958947019870 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6484504980346226383, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
@@ -145,3 +128,38 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 8893646260389600985, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
   m_PrefabInstance: {fileID: 6793710092466231953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3187263201104513172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555505956955629104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558bcaed3f637cb499b064f28c4af310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalField: 42
+  _findInComponent: {fileID: 555505956955629111}
+  _findInChild: {fileID: 555505957528642376}
+  _findInActiveChild: {fileID: 555505957788026057}
+  _findInChildPath: {fileID: 555505958947019870}
+  _findInChildInvalidPath: {fileID: 0}
+  _canvas: {fileID: 2676421800986887240}
+  _findInScene: {fileID: 0}
+  _findInSceneActive: {fileID: 0}
+  _childGraphics: {fileID: 8532941692172686583}
+--- !u!114 &229509488921763966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555505958947019867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c354198ec9bd1144b101c23182010ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentComponent: {fileID: 3187263201104513172}

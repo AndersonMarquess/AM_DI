@@ -24,6 +24,11 @@ namespace AM_DI.Scripts.Util
                     continue;
                 }
 
+                if (HasFindInParentAttr(fieldInfo, owner))
+                {
+                    continue;
+                }
+
                 if (HasFindInSceneAttr(fieldInfo, owner))
                 {
                     continue;
@@ -108,6 +113,18 @@ namespace AM_DI.Scripts.Util
             if (componentAttr != null)
             {
                 owner.TryGetComponent(fieldInfo.FieldType, out Component target);
+                fieldInfo.SetValue(owner, target);
+                return true;
+            }
+            return false;
+        }
+
+        private static bool HasFindInParentAttr(FieldInfo fieldInfo, Component owner)
+        {
+            FindInParentAttribute parentAttr = fieldInfo.GetCustomAttribute<FindInParentAttribute>();
+            if (parentAttr != null)
+            {
+                Component target = owner.GetComponentInParent(fieldInfo.FieldType);
                 fieldInfo.SetValue(owner, target);
                 return true;
             }

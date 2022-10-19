@@ -34,6 +34,9 @@ Set direct reference in manifest.json:
     
     [SerializeField, FindInScene(ActiveOnly = true)]
     private SphereCollider _activeSphereInScene = null;
+        
+    [SerializeField, FindInParent]
+    private MockComponent _parentComponent = null;
 
     [SerializeField, FindInComponent]
     private NavMeshAgent _myNavMeshAgent = null;
@@ -47,12 +50,13 @@ Set direct reference in manifest.json:
 <hr>
 <h2>Currently supported operations</h2>
 
+- Find In Scene
+    - Active
+- Find In Parent
 - Find In Component
 - Find In Child
     - Active
     - With Path
-- Find In Scene
-    - Active
 
 <h2>Why was it created?</h2>
 <p>Drag and drop can be time consuming when done over and over again, having a button to fill dependencies saved me a lot of time.</p>
