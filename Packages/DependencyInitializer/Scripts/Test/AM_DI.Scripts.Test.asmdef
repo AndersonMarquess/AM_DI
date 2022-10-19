@@ -1,6 +1,6 @@
 {
     "name": "AM_DI.Scripts.Test",
-    "rootNamespace": "",
+    "rootNamespace": "AM_DI.Scripts.Test",
     "references": [
         "GUID:512cadd9b4fcaeb48b40268684bb6cab"
     ],

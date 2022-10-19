@@ -63,7 +63,8 @@ namespace AM_DI.Scripts.Util
                 }
                 else
                 {
-                    Transform pathTransform = owner.transform.Find(childAttr.Path);
+                    string pathToSearch = FilterComponentPath(owner.transform.name, childAttr.Path);
+                    Transform pathTransform = owner.transform.Find(pathToSearch);
                     if (pathTransform != null)
                     {
                         Component[] targets = pathTransform.GetComponents(fieldInfo.FieldType);
@@ -89,6 +90,16 @@ namespace AM_DI.Scripts.Util
                 return true;
             }
             return false;
+        }
+
+        private static string FilterComponentPath(string transformName, string pathToSearch)
+        {
+            int transformNameWithDirectoryLenght = transformName.Length + 1;
+            if (pathToSearch.StartsWith(transformName) && pathToSearch.Length > transformNameWithDirectoryLenght)
+            {
+                pathToSearch = pathToSearch.Substring(transformNameWithDirectoryLenght);
+            }
+            return pathToSearch;
         }
 
         private static bool HasFindInComponentAttr(FieldInfo fieldInfo, Component owner)

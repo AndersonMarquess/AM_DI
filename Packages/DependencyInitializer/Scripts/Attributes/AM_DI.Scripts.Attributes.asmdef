@@ -1,3 +1,14 @@
 {
-	"name": "AM_DI.Scripts.Attributes"
+    "name": "AM_DI.Scripts.Attributes",
+    "rootNamespace": "AM_DI.Scripts.Attributes",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

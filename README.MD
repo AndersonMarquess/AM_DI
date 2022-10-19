@@ -7,7 +7,7 @@ Add as custom git package with package manager:
 3. Choose "Add package from git URL"
 4. Past the url: 
 ```json
-"https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer"
+https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer
 ```
 
 or
