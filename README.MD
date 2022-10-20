@@ -6,7 +6,7 @@ Add as custom git package with package manager:
 2. Click on the plus (➕) button
 3. Choose "Add package from git URL"
 4. Past the url: 
-```json
+```
 https://github.com/AndersonMarquess/AM_DI.git?path=/Packages/DependencyInitializer
 ```
 
@@ -37,6 +37,9 @@ Set direct reference in manifest.json:
         
     [SerializeField, FindInParent]
     private MockComponent _parentComponent = null;
+        
+    [SerializeField, FindInParent(IgnoreSelf = false)]
+    private Transform _firstAvailableTransform = null;
 
     [SerializeField, FindInComponent]
     private NavMeshAgent _myNavMeshAgent = null;
@@ -53,6 +56,7 @@ Set direct reference in manifest.json:
 - Find In Scene
     - Active
 - Find In Parent
+    - Ignore Self
 - Find In Component
 - Find In Child
     - Active

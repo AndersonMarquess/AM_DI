@@ -124,7 +124,8 @@ namespace AM_DI.Scripts.Util
             FindInParentAttribute parentAttr = fieldInfo.GetCustomAttribute<FindInParentAttribute>();
             if (parentAttr != null)
             {
-                Component target = owner.GetComponentInParent(fieldInfo.FieldType);
+                Transform ownerTransform = parentAttr.IgnoreSelf ? owner.transform.parent : owner.transform;
+                Component target = ownerTransform.GetComponent(fieldInfo.FieldType);
                 fieldInfo.SetValue(owner, target);
                 return true;
             }
