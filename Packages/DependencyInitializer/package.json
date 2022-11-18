@@ -1,6 +1,6 @@
 {
   "name": "com.andersonmarques.dependencyinitializer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "displayName": "Dependency Initializer",
   "description": "An alternative to drag and drop for serialized fields in unity",
   "unity": "2020.3",
