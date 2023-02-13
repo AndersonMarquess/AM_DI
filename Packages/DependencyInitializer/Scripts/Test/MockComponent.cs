@@ -36,6 +36,10 @@ namespace AM_DI.Scripts.Test
         [SerializeField, FindInScene(ActiveOnly = true)]
         private SphereCollider _findInSceneActive = null;
 
+        [Header("Composition")]
+        [SerializeField, Initializable]
+        private MockDefaultClass _mockDefaultClass = null;
+
         public Collider FindInActiveChild { get => _findInActiveChild; set => _findInActiveChild = value; }
 
         protected virtual void Start()

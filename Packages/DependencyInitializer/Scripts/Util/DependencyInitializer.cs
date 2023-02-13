@@ -8,39 +8,45 @@ namespace AM_DI.Scripts.Util
 {
     public class DependencyInitializer
     {
-        public static void InitializeComponents(Component owner)
+        public static void InitializeComponents(Component searchSource, object destination = null)
         {
-            List<FieldInfo> fields = GetFieldsWithInheritance(owner);
+            destination ??= searchSource;
+            Type currentType = destination.GetType();
+            List<FieldInfo> fields = GetFieldsWithInheritance(currentType);
 
             foreach (FieldInfo fieldInfo in fields)
             {
-                if (HasFindInChildAttr(fieldInfo, owner))
+                if (HasFindInChildAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInComponentAttr(fieldInfo, owner))
+                if (HasFindInComponentAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInParentAttr(fieldInfo, owner))
+                if (HasFindInParentAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInSceneAttr(fieldInfo, owner))
+                if (HasFindInSceneAttr(fieldInfo, searchSource, destination))
+                {
+                    continue;
+                }
+
+                if (HandleInitializableAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
             }
-            SetComponentDirty(owner);
+            SetComponentDirty(searchSource);
         }
 
-        private static List<FieldInfo> GetFieldsWithInheritance(Component owner)
+        private static List<FieldInfo> GetFieldsWithInheritance(Type currentType)
         {
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
-            Type currentType = owner.GetType();
             List<FieldInfo> fields = new List<FieldInfo>();
 
             while (currentType != null)
@@ -56,20 +62,20 @@ namespace AM_DI.Scripts.Util
             return fields;
         }
 
-        private static bool HasFindInChildAttr(FieldInfo fieldInfo, Component owner)
+        private static bool HasFindInChildAttr(FieldInfo fieldInfo, Component searchSource, object destination)
         {
             FindInChildAttribute childAttr = fieldInfo.GetCustomAttribute<FindInChildAttribute>();
             if (childAttr != null)
             {
-                Component target = null;
+                Component result = null;
                 if (string.IsNullOrEmpty(childAttr.Path))
                 {
-                    target = owner.transform.GetComponentInChildren(fieldInfo.FieldType, childAttr.OnlyActive == false);
+                    result = searchSource.transform.GetComponentInChildren(fieldInfo.FieldType, childAttr.OnlyActive == false);
                 }
                 else
                 {
-                    string pathToSearch = FilterComponentPath(owner.transform.name, childAttr.Path);
-                    Transform pathTransform = owner.transform.Find(pathToSearch);
+                    string pathToSearch = FilterComponentPath(searchSource.transform.name, childAttr.Path);
+                    Transform pathTransform = searchSource.transform.Find(pathToSearch);
                     if (pathTransform != null)
                     {
                         Component[] targets = pathTransform.GetComponents(fieldInfo.FieldType);
@@ -77,7 +83,7 @@ namespace AM_DI.Scripts.Util
                         {
                             if (childAttr.OnlyActive == false || targets[i].gameObject.activeInHierarchy)
                             {
-                                target = targets[i];
+                                result = targets[i];
                                 break;
                             }
                         }
@@ -85,12 +91,12 @@ namespace AM_DI.Scripts.Util
                 }
 
 #if UNITY_EDITOR
-                if (target == null)
+                if (result == null)
                 {
                     Debug.LogWarningFormat("Can't find component in children. Field: <color=red>{0}</color> Path: {1}", fieldInfo.Name, childAttr.Path);
                 }
 #endif
-                fieldInfo.SetValue(owner, target);
+                fieldInfo.SetValue(destination, result);
 
                 return true;
             }
@@ -107,38 +113,49 @@ namespace AM_DI.Scripts.Util
             return pathToSearch;
         }
 
-        private static bool HasFindInComponentAttr(FieldInfo fieldInfo, Component owner)
+        private static bool HasFindInComponentAttr(FieldInfo fieldInfo, Component searchSource, object destination)
         {
             FindInComponentAttribute componentAttr = fieldInfo.GetCustomAttribute<FindInComponentAttribute>();
             if (componentAttr != null)
             {
-                owner.TryGetComponent(fieldInfo.FieldType, out Component target);
-                fieldInfo.SetValue(owner, target);
+                searchSource.TryGetComponent(fieldInfo.FieldType, out Component target);
+                fieldInfo.SetValue(destination, target);
                 return true;
             }
             return false;
         }
 
-        private static bool HasFindInParentAttr(FieldInfo fieldInfo, Component owner)
+        private static bool HasFindInParentAttr(FieldInfo fieldInfo, Component searchSource, object destination)
         {
             FindInParentAttribute parentAttr = fieldInfo.GetCustomAttribute<FindInParentAttribute>();
             if (parentAttr != null)
             {
-                Transform ownerTransform = parentAttr.IgnoreSelf ? owner.transform.parent : owner.transform;
+                Transform ownerTransform = parentAttr.IgnoreSelf ? searchSource.transform.parent : searchSource.transform;
                 Component target = ownerTransform.GetComponent(fieldInfo.FieldType);
-                fieldInfo.SetValue(owner, target);
+                fieldInfo.SetValue(destination, target);
                 return true;
             }
             return false;
         }
 
-        private static bool HasFindInSceneAttr(FieldInfo fieldInfo, Component owner)
+        private static bool HasFindInSceneAttr(FieldInfo fieldInfo, Component searchSource, object destination)
         {
             FindInSceneAttribute sceneAttr = fieldInfo.GetCustomAttribute<FindInSceneAttribute>();
             if (sceneAttr != null)
             {
                 UnityEngine.Object target = UnityEngine.Object.FindObjectOfType(fieldInfo.FieldType, sceneAttr.ActiveOnly == false);
-                fieldInfo.SetValue(owner, target);
+                fieldInfo.SetValue(destination, target);
+                return true;
+            }
+            return false;
+        }
+
+        private static bool HandleInitializableAttr(FieldInfo fieldInfo, Component searchSource, object destioantion)
+        {
+            InitializableAttribute initializableAttr = fieldInfo.GetCustomAttribute<InitializableAttribute>();
+            if (initializableAttr != null)
+            {
+                InitializeComponents(searchSource, fieldInfo.GetValue(destioantion));
                 return true;
             }
             return false;
@@ -146,14 +163,16 @@ namespace AM_DI.Scripts.Util
 
         public static void ClearComponents(Component owner)
         {
-            List<FieldInfo> fields = GetFieldsWithInheritance(owner);
+            List<FieldInfo> fields = GetFieldsWithInheritance(owner.GetType());
 
             foreach (FieldInfo field in fields)
             {
                 FindInChildAttribute childAttr = field.GetCustomAttribute<FindInChildAttribute>();
                 FindInComponentAttribute componentAttr = field.GetCustomAttribute<FindInComponentAttribute>();
                 FindInSceneAttribute sceneAttr = field.GetCustomAttribute<FindInSceneAttribute>();
-                if (childAttr != null || componentAttr != null || sceneAttr != null)
+                FindInParentAttribute parentAttr = field.GetCustomAttribute<FindInParentAttribute>();
+                InitializableAttribute initializableAttr = field.GetCustomAttribute<InitializableAttribute>();
+                if (childAttr != null || componentAttr != null || sceneAttr != null || parentAttr != null || initializableAttr != null)
                 {
                     field.SetValue(owner, null);
                     continue;

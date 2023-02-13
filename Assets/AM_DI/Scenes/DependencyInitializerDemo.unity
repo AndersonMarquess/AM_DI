@@ -804,6 +804,34 @@ PrefabInstance:
       propertyPath: _findInSceneActive
       value: 
       objectReference: {fileID: 768701172}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass._targetBoxCollider
+      value: 
+      objectReference: {fileID: 6484504979325796951}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<FindInScene>k__BackingField
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<FindInChildPath>k__BackingField
+      value: 
+      objectReference: {fileID: 6484504979325796950}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<TargetBoxCollider>k__BackingField
+      value: 
+      objectReference: {fileID: 6484504979325796951}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<DeepInitializable>k__BackingField.<FindInScene>k__BackingField
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<DeepInitialization>k__BackingField.<FindInScene>k__BackingField
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
+      propertyPath: _mockDefaultClass.<DeepInitializable>k__BackingField.<SuperDeepInitializable>k__BackingField.<FindInComponent>k__BackingField
+      value: 
+      objectReference: {fileID: 2100294527}
     - target: {fileID: 6484504979420462241, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: m_Name
       value: SimpleCsharpGB
