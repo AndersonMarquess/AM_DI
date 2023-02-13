@@ -8,30 +8,31 @@ namespace AM_DI.Scripts.Util
 {
     public class DependencyInitializer
     {
-        public static void InitializeComponents(Component searchSource, object destination = null)
+        public static void InitializeComponents(Component source, object destination = null)
         {
-            destination ??= searchSource;
-            Type currentType = destination.GetType();
-            List<FieldInfo> fields = GetFieldsWithInheritance(currentType);
+            destination ??= source;
+
+            List<FieldInfo> fields = GetFieldsWithInheritance(destination.GetType());
+            Transform searchSource = source.transform;
 
             foreach (FieldInfo fieldInfo in fields)
             {
-                if (HasFindInChildAttr(fieldInfo, searchSource, destination))
+                if (HandleFindInChildAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInComponentAttr(fieldInfo, searchSource, destination))
+                if (HandleFindInComponentAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInParentAttr(fieldInfo, searchSource, destination))
+                if (HandleFindInParentAttr(fieldInfo, searchSource, destination))
                 {
                     continue;
                 }
 
-                if (HasFindInSceneAttr(fieldInfo, searchSource, destination))
+                if (HandleFindInSceneAttr(fieldInfo, destination))
                 {
                     continue;
                 }
@@ -62,34 +63,12 @@ namespace AM_DI.Scripts.Util
             return fields;
         }
 
-        private static bool HasFindInChildAttr(FieldInfo fieldInfo, Component searchSource, object destination)
+        private static bool HandleFindInChildAttr(FieldInfo fieldInfo, Transform searchSource, object destination)
         {
             FindInChildAttribute childAttr = fieldInfo.GetCustomAttribute<FindInChildAttribute>();
             if (childAttr != null)
             {
-                Component result = null;
-                if (string.IsNullOrEmpty(childAttr.Path))
-                {
-                    result = searchSource.transform.GetComponentInChildren(fieldInfo.FieldType, childAttr.OnlyActive == false);
-                }
-                else
-                {
-                    string pathToSearch = FilterComponentPath(searchSource.transform.name, childAttr.Path);
-                    Transform pathTransform = searchSource.transform.Find(pathToSearch);
-                    if (pathTransform != null)
-                    {
-                        Component[] targets = pathTransform.GetComponents(fieldInfo.FieldType);
-                        for (int i = 0; i < targets.Length; i++)
-                        {
-                            if (childAttr.OnlyActive == false || targets[i].gameObject.activeInHierarchy)
-                            {
-                                result = targets[i];
-                                break;
-                            }
-                        }
-                    }
-                }
-
+                Component result = SearchInChild(fieldInfo, searchSource, childAttr);
 #if UNITY_EDITOR
                 if (result == null)
                 {
@@ -103,6 +82,29 @@ namespace AM_DI.Scripts.Util
             return false;
         }
 
+        private static Component SearchInChild(FieldInfo fieldInfo, Transform searchSource, FindInChildAttribute childAttr)
+        {
+            if (string.IsNullOrEmpty(childAttr.Path))
+            {
+                return searchSource.GetComponentInChildren(fieldInfo.FieldType, childAttr.OnlyActive == false);
+            }
+
+            string pathToSearch = FilterComponentPath(searchSource.name, childAttr.Path);
+            Transform pathTransform = searchSource.Find(pathToSearch);
+            if (pathTransform != null)
+            {
+                Component[] targets = pathTransform.GetComponents(fieldInfo.FieldType);
+                for (int i = 0; i < targets.Length; i++)
+                {
+                    if (childAttr.OnlyActive == false || targets[i].gameObject.activeInHierarchy)
+                    {
+                        return targets[i];
+                    }
+                }
+            }
+            return null;
+        }
+
         private static string FilterComponentPath(string transformName, string pathToSearch)
         {
             int transformNameWithDirectoryLenght = transformName.Length + 1;
@@ -113,7 +115,7 @@ namespace AM_DI.Scripts.Util
             return pathToSearch;
         }
 
-        private static bool HasFindInComponentAttr(FieldInfo fieldInfo, Component searchSource, object destination)
+        private static bool HandleFindInComponentAttr(FieldInfo fieldInfo, Transform searchSource, object destination)
         {
             FindInComponentAttribute componentAttr = fieldInfo.GetCustomAttribute<FindInComponentAttribute>();
             if (componentAttr != null)
@@ -125,12 +127,12 @@ namespace AM_DI.Scripts.Util
             return false;
         }
 
-        private static bool HasFindInParentAttr(FieldInfo fieldInfo, Component searchSource, object destination)
+        private static bool HandleFindInParentAttr(FieldInfo fieldInfo, Transform searchSource, object destination)
         {
             FindInParentAttribute parentAttr = fieldInfo.GetCustomAttribute<FindInParentAttribute>();
             if (parentAttr != null)
             {
-                Transform ownerTransform = parentAttr.IgnoreSelf ? searchSource.transform.parent : searchSource.transform;
+                Transform ownerTransform = parentAttr.IgnoreSelf ? searchSource.parent : searchSource;
                 Component target = ownerTransform.GetComponent(fieldInfo.FieldType);
                 fieldInfo.SetValue(destination, target);
                 return true;
@@ -138,7 +140,7 @@ namespace AM_DI.Scripts.Util
             return false;
         }
 
-        private static bool HasFindInSceneAttr(FieldInfo fieldInfo, Component searchSource, object destination)
+        private static bool HandleFindInSceneAttr(FieldInfo fieldInfo, object destination)
         {
             FindInSceneAttribute sceneAttr = fieldInfo.GetCustomAttribute<FindInSceneAttribute>();
             if (sceneAttr != null)
@@ -150,7 +152,7 @@ namespace AM_DI.Scripts.Util
             return false;
         }
 
-        private static bool HandleInitializableAttr(FieldInfo fieldInfo, Component searchSource, object destioantion)
+        private static bool HandleInitializableAttr(FieldInfo fieldInfo, Transform searchSource, object destioantion)
         {
             InitializableAttribute initializableAttr = fieldInfo.GetCustomAttribute<InitializableAttribute>();
             if (initializableAttr != null)

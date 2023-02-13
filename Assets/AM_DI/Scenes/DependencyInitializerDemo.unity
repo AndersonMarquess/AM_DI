@@ -777,33 +777,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _canvas
-      value: 
-      objectReference: {fileID: 6484504979325796949}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _findInChild
-      value: 
-      objectReference: {fileID: 6484504979325796952}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _findInScene
       value: 
-      objectReference: {fileID: 705507994}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _findInChildPath
-      value: 
-      objectReference: {fileID: 6484504979325796950}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _findInComponent
-      value: 
-      objectReference: {fileID: 6484504979325796948}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _findInActiveChild
-      value: 
-      objectReference: {fileID: 6484504979325796951}
+      objectReference: {fileID: 0}
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _findInSceneActive
       value: 
-      objectReference: {fileID: 768701172}
+      objectReference: {fileID: 0}
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _mockDefaultClass._targetBoxCollider
       value: 
@@ -811,27 +791,15 @@ PrefabInstance:
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _mockDefaultClass.<FindInScene>k__BackingField
       value: 
-      objectReference: {fileID: 705507994}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _mockDefaultClass.<FindInChildPath>k__BackingField
-      value: 
-      objectReference: {fileID: 6484504979325796950}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _mockDefaultClass.<TargetBoxCollider>k__BackingField
-      value: 
-      objectReference: {fileID: 6484504979325796951}
+      objectReference: {fileID: 0}
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _mockDefaultClass.<DeepInitializable>k__BackingField.<FindInScene>k__BackingField
       value: 
-      objectReference: {fileID: 705507994}
+      objectReference: {fileID: 0}
     - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: _mockDefaultClass.<DeepInitialization>k__BackingField.<FindInScene>k__BackingField
       value: 
       objectReference: {fileID: 705507994}
-    - target: {fileID: 6484504979420462240, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-      propertyPath: _mockDefaultClass.<DeepInitializable>k__BackingField.<SuperDeepInitializable>k__BackingField.<FindInComponent>k__BackingField
-      value: 
-      objectReference: {fileID: 2100294527}
     - target: {fileID: 6484504979420462241, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
       propertyPath: m_Name
       value: SimpleCsharpGB
@@ -882,28 +850,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
---- !u!195 &6484504979325796948 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 6484504979420462246, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-  m_PrefabInstance: {fileID: 6484504979325796947}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &6484504979325796949 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 8893646260389600985, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-  m_PrefabInstance: {fileID: 6484504979325796947}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6484504979325796950 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6484504980346226383, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-  m_PrefabInstance: {fileID: 6484504979325796947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &6484504979325796951 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 6484504979192028760, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
-  m_PrefabInstance: {fileID: 6484504979325796947}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6484504979325796952 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6484504978931333593, guid: bd8671befb14e8f4fbbaa9e6b8eccb25, type: 3}
   m_PrefabInstance: {fileID: 6484504979325796947}
   m_PrefabAsset: {fileID: 0}

@@ -423,6 +423,14 @@ MonoBehaviour:
   _canvas: {fileID: 8893646260389600985}
   _findInScene: {fileID: 0}
   _findInSceneActive: {fileID: 0}
+  _mockDefaultClass:
+    <TargetBoxCollider>k__BackingField: {fileID: 6484504979192028760}
+    <FindInScene>k__BackingField: {fileID: 0}
+    <FindInChildPath>k__BackingField: {fileID: 6484504980346226383}
+    <DeepInitializable>k__BackingField:
+      <FindInScene>k__BackingField: {fileID: 0}
+      <SuperDeepInitializable>k__BackingField:
+        <FindInComponent>k__BackingField: {fileID: 6484504979420462246}
 --- !u!195 &6484504979420462246
 NavMeshAgent:
   m_ObjectHideFlags: 0

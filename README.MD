@@ -49,7 +49,18 @@ Set direct reference in manifest.json:
     
     [SerializeField, FindInChild(Path = "Plane/InnerChild")]
     private Renderer _specifChildRenderer = null;
+
+    [SerializeField, Initializable]
+    private MyDefaultCsharpClass _compositionClass = null;    
+    
+    [Serializable]
+    class MyDefaultCsharpClass 
+    {
+        [SerializeField, FindInChild]
+        private Renderer _childRenderer = null;
+    }
 ```
+
 <hr>
 <h2>Currently supported operations</h2>
 
@@ -61,6 +72,7 @@ Set direct reference in manifest.json:
 - Find In Child
     - Active
     - With Path
+- Default class initialization
 
 <h2>Why was it created?</h2>
 <p>Drag and drop can be time consuming when done over and over again, having a button to fill dependencies saved me a lot of time.</p>
