@@ -42,7 +42,7 @@ namespace AM_DI.Scripts.Util
                     continue;
                 }
             }
-            SetComponentDirty(searchSource);
+            SetComponentDirty(source);
         }
 
         private static List<FieldInfo> GetFieldsWithInheritance(Type currentType)
@@ -152,12 +152,12 @@ namespace AM_DI.Scripts.Util
             return false;
         }
 
-        private static bool HandleInitializableAttr(FieldInfo fieldInfo, Transform searchSource, object destioantion)
+        private static bool HandleInitializableAttr(FieldInfo fieldInfo, Transform searchSource, object destination)
         {
             InitializableAttribute initializableAttr = fieldInfo.GetCustomAttribute<InitializableAttribute>();
             if (initializableAttr != null)
             {
-                InitializeComponents(searchSource, fieldInfo.GetValue(destioantion));
+                InitializeComponents(searchSource, fieldInfo.GetValue(destination));
                 return true;
             }
             return false;
